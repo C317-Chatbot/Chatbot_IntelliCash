@@ -3,12 +3,19 @@
   <head>
     <title>Chatbot</title>
     <style>
+
       body,
       html {
         font-family: sans-serif;
         margin: 0;
         padding: 0;
         height: 100%;
+        background-image: url("logo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 250px;
+        color: orange;
       }
 
       #chat-container {
@@ -73,7 +80,7 @@
       }
 
       button {
-        background-color: #007aff;
+        background-color: orange;
         color: #fff;
         border: none;
         padding: 18px;
@@ -86,7 +93,7 @@
       #loader {
         display: none; /* Hide by default */
         position: absolute;
-        top: 50%;
+        top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
@@ -94,7 +101,7 @@
   </head>
   <body>
     <div id="chat-container">
-      <h1>Gemini Chatbot</h1>
+      <h1>IntelliBot, Assistente Virtual da IntelliCash Soluções</h1>
       <div id="chat-container-inner">
         <!-- Adicione uma div interna para conter as mensagens -->
         <div id="chat-history"></div>

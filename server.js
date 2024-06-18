@@ -110,6 +110,9 @@ app.get("/", (req, res) => {
 app.get("/loader.gif", (req, res) => {
   res.sendFile(__dirname + "/loader.gif");
 });
+app.get("/logo.png", (req, res) => {
+  res.sendFile(__dirname + "/logo.png");
+});
 app.post("/chat", async (req, res) => {
   try {
     const userInput = req.body?.userInput;
