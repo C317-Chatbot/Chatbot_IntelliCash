@@ -14,8 +14,9 @@
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-size: 250px;
-        color: orange;
+        background-size: 200px;
+        /* color: rgb(240, 159, 8); */
+        color: black;
       }
 
       #chat-container {
@@ -23,6 +24,7 @@
         flex-direction: column;
         height: 100vh; /* Defina a altura total da janela de visualização */
         overflow: hidden; /* Impede a rolagem da janela de visualização principal */
+        /* background-color: rgba(255, 255, 255, 0.8); */
       }
 
       #chat-container-inner {
@@ -42,7 +44,8 @@
       }
 
       .user-message .message-content {
-        background-color: #007aff;
+        /* background-color: #007aff; */
+        background-color: rgba(0, 122, 255, 0.8);
         color: #fff;
         padding: 10px;
         border-radius: 10px;
@@ -55,7 +58,8 @@
       }
 
       .bot-message .message-content {
-        background-color: #000;
+        /* background-color: #000; */
+        background-color: rgb(240, 159, 8, 0.8);
         color: #fff;
         padding: 10px;
         border-radius: 10px;
@@ -66,7 +70,8 @@
         display: flex;
         align-items: center;
         padding: 10px;
-        background-color: #f0f0f0;
+        /* background-color: #f0f0f0; */
+        background-color: rgba(240, 240, 240, 0.9);
       }
 
       input {
@@ -80,7 +85,7 @@
       }
 
       button {
-        background-color: orange;
+        background-color: rgba(0, 122, 255);
         color: #fff;
         border: none;
         padding: 18px;
@@ -96,6 +101,7 @@
         top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
+        opacity: 0.8;
       }
     </style>
   </head>
