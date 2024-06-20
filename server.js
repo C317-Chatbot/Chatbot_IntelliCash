@@ -10,8 +10,6 @@ const dotenv = require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
-app.use(express.static(__dirname)); // Para servir arquivos estáticos
-
 const MODEL_NAME = "gemini-pro";
 const API_KEY = process.env.API_KEY;
 
@@ -74,16 +72,18 @@ async function runChat(userInput) {
   return response.text();
 }
 
+app.use(express.static(__dirname + '/public'));
+
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.get("/loader.gif", (req, res) => {
-  res.sendFile(__dirname + "/loader.gif");
+  res.sendFile(__dirname + "/public/loader.gif");
 });
 
 app.get("/logo.png", (req, res) => {
-  res.sendFile(__dirname + "/logo.png");
+  res.sendFile(__dirname + "/public/logo.png");
 });
 
 app.get("/faqs", (req, res) => {
