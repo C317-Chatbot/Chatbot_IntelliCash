@@ -72,18 +72,18 @@ async function runChat(userInput) {
   return response.text();
 }
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/loader.gif", (req, res) => {
-  res.sendFile(__dirname + "/public/loader.gif");
+  res.sendFile(__dirname + "/loader.gif");
 });
 
 app.get("/logo.png", (req, res) => {
-  res.sendFile(__dirname + "/public/logo.png");
+  res.sendFile(__dirname + "/logo.png");
 });
 
 app.get("/faqs", (req, res) => {

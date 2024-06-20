@@ -6,7 +6,15 @@
         "use": "@vercel/node"
       },
       {
-        "src": "public/**/*",
+        "src": "index.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "logo.png",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "loader.gif",
         "use": "@vercel/static"
       }
     ],
