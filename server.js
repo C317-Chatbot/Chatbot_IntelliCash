@@ -5,7 +5,9 @@ const {
   HarmBlockThreshold,
 } = require("@google/generative-ai");
 const fs = require("fs");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +26,10 @@ function readTextFile(filePath) {
 }
 
 async function runChat(userInput) {
+  if (!API_KEY) {
+    throw new Error("API_KEY is not set");
+  }
+
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
   const arquivoTexto = readTextFile("config.txt");
