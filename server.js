@@ -10,7 +10,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;  // Vercel irá ignorar essa variável em produção
 app.use(express.json());
 const MODEL_NAME = "gemini-pro";
 const API_KEY = process.env.API_KEY;
@@ -30,52 +30,57 @@ async function runChat(userInput) {
     throw new Error("API_KEY is not set");
   }
 
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: MODEL_NAME });
-  const arquivoTexto = readTextFile("config.txt");
+  try {
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+    const arquivoTexto = readTextFile("config.txt");
 
-  const generationConfig = {
-    temperature: 0.9,
-    topK: 1,
-    topP: 1,
-    maxOutputTokens: 1000,
-  };
+    const generationConfig = {
+      temperature: 0.9,
+      topK: 1,
+      topP: 1,
+      maxOutputTokens: 1000,
+    };
 
-  const safetySettings = [
-    {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-  ];
-
-  const chat = model.startChat({
-    generationConfig,
-    safetySettings,
-    history: [
+    const safetySettings = [
       {
-        role: "user",
-        parts: [
-          {
-            text:
-              "Você é uma Assistente Virtual chamada IntelliBot, com o objetivo de realizar atendimentos de primeiro nível amigável ao usuário, solucionando dúvidas simples e encaminhando automaticamente para um atendimento com um Consultor Técnico quando não houver uma resposta para a dúvida do cliente. Os clientes farão perguntas relacionadas aos produtos e funcionalidades da empresa IntelliCash. Você, como assistente virtual, não deve responder perguntas que não tenha certeza ou segurança, e deve orientar o cliente a buscar suporte diretamente com um consultor técnico. Você não deve inventar respostas ou tentar buscar respostas na internet ou qualquer outro meio. Caso não saiba a resposta para uma pergunta, você deve dizer ao cliente que irá encaminha-lo para um consultor técnico." +
-              arquivoTexto,
-          },
-        ],
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
       },
-      {
-        role: "model",
-        parts: [
-          {
-            text: "Olá, o meu nome é IntelliBot, Assistente Virtual da IntelliCash. Como posso lhe ajudar hoje?",
-          },
-        ],
-      },
-    ],
-  });
+    ];
 
-  const result = await chat.sendMessage(userInput);
-  const response = result.response;
-  return response.text();
+    const chat = model.startChat({
+      generationConfig,
+      safetySettings,
+      history: [
+        {
+          role: "user",
+          parts: [
+            {
+              text:
+                "Você é uma Assistente Virtual chamada IntelliBot, com o objetivo de realizar atendimentos de primeiro nível amigável ao usuário, solucionando dúvidas simples e encaminhando automaticamente para um atendimento com um Consultor Técnico quando não houver uma resposta para a dúvida do cliente. Os clientes farão perguntas relacionadas aos produtos e funcionalidades da empresa IntelliCash. Você, como assistente virtual, não deve responder perguntas que não tenha certeza ou segurança, e deve orientar o cliente a buscar suporte diretamente com um consultor técnico. Você não deve inventar respostas ou tentar buscar respostas na internet ou qualquer outro meio. Caso não saiba a resposta para uma pergunta, você deve dizer ao cliente que irá encaminha-lo para um consultor técnico." +
+                arquivoTexto,
+            },
+          ],
+        },
+        {
+          role: "model",
+          parts: [
+            {
+              text: "Olá, o meu nome é IntelliBot, Assistente Virtual da IntelliCash. Como posso lhe ajudar hoje?",
+            },
+          ],
+        },
+      ],
+    });
+
+    const result = await chat.sendMessage(userInput);
+    const response = result.response;
+    return response.text();
+  } catch (error) {
+    console.error("Error in runChat:", error);
+    return "Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente mais tarde.";
+  }
 }
 
 app.use(express.static(__dirname));
