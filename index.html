@@ -39,10 +39,8 @@
       flex-direction: column;
       height: 100%;
       overflow: hidden;
-      /* Pode ser removido */
       align-items: center;
       width: 100%;
-      /* Ajuste opcional */
     }
 
     #chat-container-inner {
@@ -55,13 +53,19 @@
       align-items: center;
       width: 80%;
       max-width: 1000px;
+      max-height: calc(100% - 160px);
+      /* Ajuste conforme necessário */
+    }
+
+    #chat-history {
+      width: 100%;
+      margin-bottom: 20px;
+      /* Espaço entre mensagens e campo de entrada */
     }
 
     #chat-input-container {
       height: auto;
-      /* Ajuste a altura conforme necessário */
       margin-top: auto;
-      /* Fica na parte inferior */
       align-items: center;
       background-color: #fafafa;
       display: flex;
@@ -72,6 +76,9 @@
       position: fixed;
       bottom: 0;
     }
+
+    /* Outros estilos existentes... */
+
 
     h1 {
       text-align: center;
