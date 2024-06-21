@@ -9,15 +9,14 @@
   <style>
     body,
     html {
-      font-family: 'Roboto', sans-serif; /* Define a fonte usada no corpo e no HTML */
-      margin: 0; /* Remove margens padrão */
-      padding: 0; /* Remove preenchimento padrão */
-      height: 100%; /* Define a altura para ocupar a tela inteira */
-      background-color: #f4f4f9; /* Define a cor de fundo */
-      color: #333; /* Define a cor do texto */
-      display: flex; /* Usa flexbox para o layout */
-      flex-direction: column; /* Direção do layout é coluna */
-      align-items: center; /* Centraliza os itens horizontalmente */
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -76,12 +75,30 @@
     }
 
     #chat-input-container {
-      background-color: #fafafa; /* Cor de fundo */
-      display: flex; /* Usa flexbox */
-      justify-content: center; /* Centraliza os itens */
-      width: 100%; /* Largura total */
-      max-width: 500px; /* Largura máxima */
-      padding: 20px; /* Preenchimento */
+      height: auto;
+      margin-top: auto;
+      align-items: center;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      max-width: 1000px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 500;
+      color: #fff;
+      background-color: #002366;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      animation: fadeIn 0.5s ease;
     }
 
     .user-message,
@@ -153,17 +170,16 @@
     }
 
     #loader {
-      position: fixed; /* Posição fixa */
-      top: 50%; /* Alinha ao meio verticalmente */
-      left: 50%; /* Alinha ao meio horizontalmente */
-      transform: translate(-50%, -50%); /* Centraliza o elemento */
-      z-index: 1000; /* Sobreposição */
-      display: none; /* Inicialmente escondido */
-      opacity: 0.5; /* Translucidez */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      display: none;
     }
 
     #loader img {
-      width: 100px; /* Largura da imagem */
+      width: 50px;
     }
 
     @keyframes fadeIn {
